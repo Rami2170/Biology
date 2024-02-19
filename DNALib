@@ -1,0 +1,181 @@
+public class DNALib {
+    public static boolean helpermethod(String dna){
+        if(dna.charAt(0)== 'A' || dna.charAt(0) == 'C'|| dna.charAt(0) == 'G' || dna.charAt(0)== 'T'){
+            if(dna.length() == 1){
+                return true;
+            }
+            else{
+                return helpermethod(dna.substring(1));
+
+            }
+        }
+        return false;
+    }
+    public static boolean validator(String dna) {
+        if (dna.isEmpty()) {
+            return false;
+        }
+        if (dna.length() % 3 != 0) {
+        return false;
+        }
+        return helpermethod(dna);
+    }
+    public static String reverser(String dna){
+        if(dna.length() == 1){
+            return dna;
+        }
+        if(dna.length() == 2){
+          return ""+ dna.charAt(1)+ dna.charAt(0);
+        }
+        return ""+ dna.charAt(dna.length()-1)+ reverser(dna.substring(1,dna.length()-1)) + dna.charAt(0);
+    }
+    public static String inverser(String dna){
+        if(dna.length() == 1){
+            switch (dna){
+                case "A":
+                    return "T";
+                case "C":
+                    return "G";
+                case "G":
+                    return "C";
+                case "T":
+                    return "A";
+                default:
+                    return dna;
+            }
+        }
+        switch (dna.charAt(0)){
+            case 'A':
+                return "T"+ inverser(dna.substring(1));
+            case 'C':
+                return "G"+ inverser(dna.substring(1));
+            case 'G':
+                return "C"+ inverser(dna.substring(1));
+            case 'T':
+                return "A"+ inverser(dna.substring(1));
+            default:
+                return dna;
+        }
+
+    }
+    public static String translator(String dna){
+        String sequence;
+        sequence = dna.substring(0,3);
+        String aminoacid = "";
+        switch(sequence){
+            case "GCA":
+            case "GCC":
+            case "GCG":
+            case "GCT":
+                aminoacid = "A";
+                break;
+            case "TGC":
+            case "TGT":
+                aminoacid = "C";
+                break;
+            case "GAC":
+            case "GAT":
+                aminoacid = "D";
+                break;
+            case "GAA":
+            case "GAG":
+                aminoacid = "E";
+                break;
+            case "TTC":
+            case "TTT":
+                aminoacid = "F";
+                break;
+            case "GGA":
+            case "GGC":
+            case "GGG":
+            case "GGT":
+                aminoacid = "G";
+                break;
+            case "CAC":
+            case "CAT":
+                aminoacid = "H";
+                break;
+            case "ATA":
+            case "ATC":
+            case "ATT":
+                aminoacid = "I";
+                break;
+            case "AAA":
+            case "AAG":
+                aminoacid = "K";
+                break;
+            case "CTA":
+            case "CTC":
+            case "CTG":
+            case "CTT":
+            case "TTA":
+            case "TTG":
+                aminoacid = "L";
+                break;
+            case "ATG":
+                aminoacid = "M";
+                break;
+            case "AAT":
+            case "AAC":
+                aminoacid = "N";
+                break;
+            case "CCA":
+            case "CCC":
+            case "CCG":
+            case "CCT":
+                aminoacid = "P";
+                break;
+            case "CAA":
+            case "CAG":
+                aminoacid = "Q";
+                break;
+            case "AGA":
+            case "AGG":
+            case "CGA":
+            case "CGC":
+            case "CGG":
+            case "CGT":
+                aminoacid = "R";
+                break;
+            case "AGC":
+            case "AGT":
+            case "TCA":
+            case "TCC":
+            case "TCG":
+            case "TCT":
+                aminoacid = "S";
+                break;
+            case "ACA":
+            case "ACC":
+            case "ACG":
+            case "ACT":
+                aminoacid = "T";
+                break;
+            case "GTA":
+            case "GTC":
+            case "GTG":
+            case "GTT":
+                aminoacid = "V";
+                break;
+            case "TGG":
+                aminoacid = "W";
+                break;
+            case "TAC":
+            case "TAT":
+                aminoacid = "Y";
+                break;
+            case "TAA":
+            case "TAG":
+            case "TGA":
+                aminoacid = "-";
+                break;
+        }
+        if(dna.length() == 3){
+            return aminoacid;
+        }
+        else{
+            return aminoacid + translator(dna.substring(3));
+        }
+    }
+}
+
