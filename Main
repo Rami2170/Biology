@@ -1,0 +1,19 @@
+import java.util.Scanner;
+public class Assignment5 {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        DNALib dL = new DNALib();
+        String sequence;
+        System.out.println("[DNA Reverser and Translator]\nEnter a sequence: ");
+        sequence = sc.nextLine();
+        if(DNALib.validator(sequence)){
+            sequence = DNALib.reverser(sequence);
+            sequence = DNALib.inverser(sequence);
+            sequence = DNALib.translator(sequence);
+            System.out.println("Your DNA sequence reversed and translated is:\n"+sequence);
+        }
+        else{
+            System.out.println("Your DNA sequence is not valid");
+        }
+    }
+}
